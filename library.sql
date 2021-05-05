@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema 3802844_library
+-- Schema 3802844_3807733_library
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema 3802844_library
+-- Schema 3802844_3807733_library
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `3802844_library` DEFAULT CHARACTER SET utf8 ;
-USE `3802844_library` ;
+CREATE SCHEMA IF NOT EXISTS `3802844_3807733_library` DEFAULT CHARACTER SET utf8 ;
+USE `3802844_3807733_library` ;
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`TIPO_USUARIO`
+-- Table `3802844_3807733_library`.`TIPO_USUARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`TIPO_USUARIO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`TIPO_USUARIO` (
   `IDTIPO_USUARIO` INT NOT NULL,
   `DESCRICAO` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`IDTIPO_USUARIO`))
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`EIXO`
+-- Table `3802844_3807733_library`.`EIXO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`EIXO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`EIXO` (
   `IDEIXO` INT NOT NULL,
   `NOME` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`IDEIXO`))
@@ -38,9 +38,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`CURSO`
+-- Table `3802844_3807733_library`.`CURSO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`CURSO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`CURSO` (
   `IDCURSO` INT NOT NULL,
   `NOME` VARCHAR(100) NOT NULL,
   `EIXO_IDEIXO` INT NOT NULL,
@@ -48,16 +48,16 @@ CREATE TABLE IF NOT EXISTS `3802844_library`.`CURSO` (
   INDEX `fk_CURSO_EIXO1_idx` (`EIXO_IDEIXO` ASC),
   CONSTRAINT `fk_CURSO_EIXO1`
     FOREIGN KEY (`EIXO_IDEIXO`)
-    REFERENCES `3802844_library`.`EIXO` (`IDEIXO`)
+    REFERENCES `3802844_3807733_library`.`EIXO` (`IDEIXO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`USUARIO`
+-- Table `3802844_3807733_library`.`USUARIO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`USUARIO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`USUARIO` (
   `IDUSUARIO` INT NOT NULL,
   `NOME` VARCHAR(150) NOT NULL,
   `EMAIL` VARCHAR(255) NOT NULL,
@@ -69,21 +69,21 @@ CREATE TABLE IF NOT EXISTS `3802844_library`.`USUARIO` (
   INDEX `fk_USUARIO_CURSO1_idx` (`CURSO_IDCURSO` ASC),
   CONSTRAINT `fk_ALUNO_TIPO_USUARIO`
     FOREIGN KEY (`TIPO_USUARIO_IDTIPO_USUARIO`)
-    REFERENCES `3802844_library`.`TIPO_USUARIO` (`IDTIPO_USUARIO`)
+    REFERENCES `3802844_3807733_library`.`TIPO_USUARIO` (`IDTIPO_USUARIO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_USUARIO_CURSO1`
     FOREIGN KEY (`CURSO_IDCURSO`)
-    REFERENCES `3802844_library`.`CURSO` (`IDCURSO`)
+    REFERENCES `3802844_3807733_library`.`CURSO` (`IDCURSO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`TRABALHO`
+-- Table `3802844_3807733_library`.`TRABALHO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`TRABALHO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`TRABALHO` (
   `IDTRABALHO` INT NOT NULL,
   `TITULO` VARCHAR(150) NOT NULL,
   `ANO` INT NOT NULL,
@@ -97,9 +97,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`AUTOR`
+-- Table `3802844_3807733_library`.`AUTOR`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`AUTOR` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`AUTOR` (
   `USUARIO_IDUSUARIO` INT NOT NULL,
   `TRABALHO_IDTRABALHO` INT NOT NULL,
   PRIMARY KEY (`USUARIO_IDUSUARIO`, `TRABALHO_IDTRABALHO`),
@@ -107,21 +107,21 @@ CREATE TABLE IF NOT EXISTS `3802844_library`.`AUTOR` (
   INDEX `fk_USUARIO_has_TRABALHO_USUARIO1_idx` (`USUARIO_IDUSUARIO` ASC),
   CONSTRAINT `fk_USUARIO_has_TRABALHO_USUARIO1`
     FOREIGN KEY (`USUARIO_IDUSUARIO`)
-    REFERENCES `3802844_library`.`USUARIO` (`IDUSUARIO`)
+    REFERENCES `3802844_3807733_library`.`USUARIO` (`IDUSUARIO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_USUARIO_has_TRABALHO_TRABALHO1`
     FOREIGN KEY (`TRABALHO_IDTRABALHO`)
-    REFERENCES `3802844_library`.`TRABALHO` (`IDTRABALHO`)
+    REFERENCES `3802844_3807733_library`.`TRABALHO` (`IDTRABALHO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `3802844_library`.`HISTORICO`
+-- Table `3802844_3807733_library`.`HISTORICO`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `3802844_library`.`HISTORICO` (
+CREATE TABLE IF NOT EXISTS `3802844_3807733_library`.`HISTORICO` (
   `IDHISTORICO` INT NOT NULL,
   `DATA` DATE NOT NULL,
   `HORA` TIME NOT NULL,
@@ -132,12 +132,12 @@ CREATE TABLE IF NOT EXISTS `3802844_library`.`HISTORICO` (
   INDEX `fk_HISTORICO_USUARIO1_idx` (`USUARIO_IDUSUARIO` ASC),
   CONSTRAINT `fk_HISTORICO_TRABALHO1`
     FOREIGN KEY (`TRABALHO_IDTRABALHO`)
-    REFERENCES `3802844_library`.`TRABALHO` (`IDTRABALHO`)
+    REFERENCES `3802844_3807733_library`.`TRABALHO` (`IDTRABALHO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_HISTORICO_USUARIO1`
     FOREIGN KEY (`USUARIO_IDUSUARIO`)
-    REFERENCES `3802844_library`.`USUARIO` (`IDUSUARIO`)
+    REFERENCES `3802844_3807733_library`.`USUARIO` (`IDUSUARIO`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
