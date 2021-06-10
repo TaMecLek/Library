@@ -1,5 +1,4 @@
 <?php
-
     // usando a conexão com o banco de dados para salvar os tipos de users
     include('../../conexao/conn.php');
 
@@ -13,7 +12,7 @@
             "tipo" => "error",
             "mensagem" => "Existem campos obrigatórios não preenchidos"
         );
-    }else{
+    } else {
         // Gerando uma requisição de dados
         $IDTIPO_USUARIO = isset($requestData['IDTIPO_USUARIO']) ? $requestData['IDTIPO_USUARIO'] : '';
         $operacao = isset($requestData['operacao']) ? $requestData['operacao'] : '';
@@ -22,11 +21,11 @@
         if($operacao == 'insert'){
             try {
                 $stmt = $pdo->prepare('INSERT INTO TIPO_USUARIO (DESCRICAO) VALUES (:descricao)');
-                $stmt -> execute(array(
+                $stmt->execute(array(
                     ':descricao' => utf8_decode($requestData['DESCRICAO'])
                 ));
                 $dados = array(
-                    "tipo" => "successes",
+                    "tipo" => "success",
                     "mensagem" => "Tipo de usuário cadastrado com sucesso."
                 );
             } catch (PDOException $e) {
@@ -35,15 +34,16 @@
                     "mensagem" => "Não foi possivel criar o cadastro, tente novamente"
                 );
             }
-        }else {
+        } else {
+            
             try {
                 $stmt = $pdo->prepare('UPDATE TIPO_USUARIO SET DESCRICAO = :descricao WHERE IDTIPO_USUARIO = :id');
-                $stmt -> execute(array(
+                $stmt->execute(array(
                     ':id' => $IDTIPO_USUARIO,
                     ':descricao' => utf8_decode($requestData['DESCRICAO'])
                 ));
                 $dados = array(
-                    "tipo" => "successes",
+                    "tipo" => "success",
                     "mensagem" => "Tipo de usuário alterado com sucesso."
                 );
             } catch (PDOException $e) {

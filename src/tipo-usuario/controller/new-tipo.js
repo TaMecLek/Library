@@ -1,13 +1,12 @@
 $(document).ready(function() {
 
-    $(".new-btn").click(function(e) {
-
+    $('.new-btn').click(function(e) {
         e.preventDefault()
 
         $('.modal-title').empty()
         $('.modal-body').empty()
 
-        $('.modal-title').append('Adicionar novo tipo de usuario')
+        $('.modal-title').append('Adicionar novo tipo de usuário')
 
         $('.modal-body').load('src/tipo-usuario/view/form-tipo.html')
 
@@ -17,4 +16,5 @@ $(document).ready(function() {
 
         $('#modal-tipo').modal('show')
     })
+
 })
