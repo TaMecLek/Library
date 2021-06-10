@@ -4,13 +4,10 @@ $(document).ready(function() {
 
         e.preventDefault()
 
-        // Capturando a url
         let url = $(this).attr('href')
 
-        // Esvaziando o #conteudo e carregando o que está na url
         $('#conteudo').empty()
         $('#conteudo').load(url)
-
     })
 
 })
