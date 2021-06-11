@@ -1,4 +1,4 @@
-$(document).ready(function() {
+﻿$(document).ready(function() {
 
     $('#table-tipo').on('click', 'button.btn-edit', function(e) {
 
@@ -27,6 +27,7 @@ $(document).ready(function() {
                         $('#IDTIPO_USUARIO').val(dado.dados.IDTIPO_USUARIO)
                     })
                     $('.save-btn').show()
+                    $('.save-btn').removeAttr('data-operation')
                     $('#modal-tipo').modal('show')
                 }
             }
