@@ -7,6 +7,9 @@ $(document).ready(function() {
             "url": "src/tipo-usuario/model/list-tipo.php",
             "type": "POST"
         },
+        "language": {
+            "url": "libs/dataTable/pt_br.json"
+        },
         "columns": [{
                 "data": 'IDTIPO_USUARIO',
                 "className": "text-center"
